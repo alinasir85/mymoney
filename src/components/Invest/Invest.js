@@ -1,4 +1,4 @@
-const Invest = ({label,isSubmitted,handlerFunction}) => {
+const Invest = ({label,isSubmitted,handlerFunction,defaultValue}) => {
     return(
         <>
             <legend className="col-md-12 form-label mt-2 bg-light p-2">{label}:</legend>
@@ -6,7 +6,7 @@ const Invest = ({label,isSubmitted,handlerFunction}) => {
                 <div className="form-group row">
                     <label className="col-sm-3 col-form-label">Equity:</label>
                     <div className="col-sm-9">
-                        <input className="form-control" name="equity" type="text" required onChange={handlerFunction} disabled={isSubmitted}/>
+                        <input value={defaultValue} className="form-control" name="equity" type="text" required onChange={handlerFunction} disabled={isSubmitted} data-testid="equity-input"/>
                     </div>
                 </div>
             </div>
@@ -14,7 +14,7 @@ const Invest = ({label,isSubmitted,handlerFunction}) => {
                 <div className="form-group row">
                     <label className="col-sm-3 col-form-label">Debt:</label>
                     <div className="col-sm-9">
-                        <input className="form-control" name="debt" type="text" required onChange={handlerFunction} disabled={isSubmitted}/>
+                        <input value={defaultValue} className="form-control" name="debt" type="text" required onChange={handlerFunction} disabled={isSubmitted} data-testid="debt-input"/>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@ const Invest = ({label,isSubmitted,handlerFunction}) => {
                 <div className="form-group row">
                     <label className="col-sm-3 col-form-label">Gold:</label>
                     <div className="col-sm-9">
-                        <input className="form-control" name="gold" type="text" required onChange={handlerFunction} disabled={isSubmitted}/>
+                        <input value={defaultValue} className="form-control" name="gold" type="text" required onChange={handlerFunction} disabled={isSubmitted} data-testid="gold-input"/>
                     </div>
                 </div>
             </div>

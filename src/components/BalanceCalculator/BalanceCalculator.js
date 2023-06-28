@@ -1,12 +1,23 @@
 import MonthSelect from "../MonthSelect/MonthSelect";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ChangesList from "../ChangesList/ChangesList";
+import {MONTH_LIST} from "@/utils/Helper";
 
 const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
     const [selectedMonth,setSelectedMonth] = useState('January');
     const [balances,setBalances] = useState([]);
     const [selectedMonthBalance, setSelectedMonthBalance] = useState({});
     const [showDetails,setShowDetails] = useState(false);
+    const [filteredMonths,setFilteredMonths] = useState([]);
+
+    useEffect(() => {
+        if (changesList && changesList.length > 0) {
+            const lastMonth = changesList[changesList.length - 1].month;
+            const lastMonthIndex = MONTH_LIST.findIndex(month => month === lastMonth);
+            setFilteredMonths(MONTH_LIST.slice(0, lastMonthIndex + 1));
+        }
+    }, [changesList]);
+
 
     const calculateBalance = (prevBalance, sipAmount, changeRate, month) => {
         if (month === 'January') {
@@ -65,20 +76,20 @@ const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
               <div className="col-md-6">
                   <div className="row mt-3">
                       <div className="col-md-8">
-                          <MonthSelect handlerFunction={(event)=>setSelectedMonth(event.target.value)} isSubmitted={false}/>
+                          <MonthSelect handlerFunction={(event)=>setSelectedMonth(event.target.value)} isSubmitted={false} monthList={filteredMonths}/>
                       </div>
                       <div className="col-md-4">
-                          <button className="btn btn-primary" onClick={getBalance}>Calculate Balance</button>
+                          <button className="btn btn-primary" onClick={getBalance} data-testid="calculate-balance-btn">Calculate Balance</button>
                        </div>
                   </div>
                   <div className="row mt-3">
                       <div className="col-md-11">
-                          <button className="btn btn-primary w-100">Re-balance</button>
+                          <button className="btn btn-primary w-100" data-testid="rebalance-btn">Re-balance</button>
                       </div>
                   </div>
                   <div className="row mt-3">
                       <div className="col-md-11">
-                          <button className="btn btn-light btn-outline-dark w-100" onClick={()=>setIsSubmitted(false)}>Go Back</button>
+                          <button className="btn btn-light btn-outline-dark w-100" onClick={()=>setIsSubmitted(false)} data-testid="goBack-btn">Go Back</button>
                       </div>
                   </div>
               </div>
