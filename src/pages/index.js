@@ -53,7 +53,11 @@ const MyMoney = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    setIsSubmitted(true);
+    if(changesList.length === 0) {
+      alert('Please add change rates!');
+    } else {
+      setIsSubmitted(true);
+    }
   }
 
   const memoizedChangesList = useMemo(() => changesList, [changesList]);
@@ -68,7 +72,7 @@ const MyMoney = () => {
             <Invest label="SIP" isSubmitted={isSubmitted} handlerFunction={sipHandler}/>
           </div>
           <div className="row">
-            <Invest label="Changes" isSubmitted={isSubmitted} handlerFunction={changeHandler} defaultValue={0}/>
+            <Invest label="Changes" isSubmitted={isSubmitted} handlerFunction={changeHandler}/>
             <div className="col-md-3">
               <div className="form-group row">
                 <label className="col-sm-3 col-form-label">Month:</label>
