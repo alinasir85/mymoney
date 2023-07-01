@@ -5,7 +5,7 @@ import ChangesList from "@/components/ChangesList/ChangesList";
 import BalanceCalculator from "@/components/BalanceCalculator/BalanceCalculator";
 import {MONTH_LIST} from "@/utils/Helper";
 
-const MyMoney = () => {
+const Index = () => {
   const [allocation,setAllocation] = useState({});
   const [sip,setSip] = useState({});
   const [changesList,setChangesList] = useState([]);
@@ -96,4 +96,4 @@ const MyMoney = () => {
       </>
   );
 }
-export default MyMoney;
+export default Index;
