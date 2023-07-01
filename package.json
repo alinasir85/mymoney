@@ -10,7 +10,7 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "predeploy":"next export",
+    "predeploy":"npm run build",
     "deploy":"gh-pages -d out"
   },
   "dependencies": {
