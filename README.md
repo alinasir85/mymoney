@@ -6,5 +6,6 @@ My Money Project:
 - Can see the balances in a bar chart
 
 
+Sample Video: https://github.com/alinasir85/mymoney/blob/master/MyMoney.mp4
 Live Site: https://alinasir85.github.io/mymoney/
 
