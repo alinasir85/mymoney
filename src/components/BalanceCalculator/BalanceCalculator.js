@@ -2,13 +2,15 @@ import MonthSelect from "../MonthSelect/MonthSelect";
 import {useEffect, useState} from "react";
 import ChangesList from "../ChangesList/ChangesList";
 import {MONTH_LIST, sortMonthsDesc} from "@/utils/Helper";
+import BalanceChart from "@/components/BalanceChart/BalanceChart";
 
 const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
-    const [selectedMonth,setSelectedMonth] = useState('January');
+    const [selectedMonth,setSelectedMonth] = useState('JANUARY');
     const [balances,setBalances] = useState([]);
     const [selectedMonthBalance, setSelectedMonthBalance] = useState({});
     const [isRebalanceClicked, setIsRebalanceClicked] = useState(false);
-    const [showDetails,setShowDetails] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
+    const [showChart,setShowChart] = useState(false);
     const [filteredMonths,setFilteredMonths] = useState([]);
 
     useEffect(() => {
@@ -20,7 +22,7 @@ const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
     }, [changesList]);
 
     const calculateBalance = (prevBalance, sipAmount, changeRate, month) => {
-        if (month === 'January') {
+        if (month === 'JANUARY') {
             sipAmount = 0;
         }
         const currentBalance = prevBalance + sipAmount;
@@ -30,7 +32,7 @@ const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
 
     const populateBalances = (selectedMonth) => {
         let prevBalance = {
-            month: 'January',
+            month: 'JANUARY',
             equity: allocation.equity,
             debt: allocation.debt,
             gold: allocation.gold,
@@ -49,11 +51,11 @@ const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
                 gold: calculateBalance(prevBalance.gold, sip.gold, change.gold, change.month),
             };
             newBalances.push(prevBalance);
-            if(change.month === 'June' || change.month === 'December') {
-                calculateRebalance(newBalances,change.month);
-            } else if (change.month === selectedMonth) {
+            if (change.month === selectedMonth) {
                 setSelectedMonthBalance(prevBalance);
                 break;
+            } else if(change.month === 'JUNE' || change.month === 'DECEMBER') {
+                calculateRebalance(newBalances,change.month);
             }
         }
         setBalances(newBalances);
@@ -62,6 +64,7 @@ const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
     const getBalance = (event) => {
         event.preventDefault();
         setIsRebalanceClicked(false);
+        setShowChart(false);
         const balance = balances.find((balance) => balance.month === selectedMonth);
         if (balance) {
             setShowDetails(false);
@@ -83,12 +86,13 @@ const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
 
     const reBalance = (event) => {
         event.preventDefault();
-        const reBalanceMonth = sortMonthsDesc([...changesList]).find(change => (change.month === "December" || change.month === "June"));
+        const reBalanceMonth = sortMonthsDesc([...changesList]).find(change => (change.month === "DECEMBER" || change.month === "JUNE"));
         if(!reBalanceMonth) {
             alert('CANNOT RE-BALANCE!');
         } else {
             setIsRebalanceClicked(true);
             setShowDetails(false);
+            setShowChart(false);
             const rebalancedAmount = balances.find(balance => (balance.month === reBalanceMonth.month));
             if(rebalancedAmount) {
                 setSelectedMonthBalance(rebalancedAmount);
@@ -130,6 +134,7 @@ const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
               <div className="col-md-3"/>
             </div>
             {
+                showChart ? <BalanceChart balances={balances}/> :
                 (Object.keys(selectedMonthBalance)?.length > 0 || isRebalanceClicked) && (
                     <>
                         <ChangesList
@@ -137,11 +142,18 @@ const BalanceCalculator = ({setIsSubmitted, allocation, sip, changesList}) => {
                             label={isRebalanceClicked ? "Re-balance Amount" : showDetails ? "Balances" : "Balance"}
                         />
                         {!showDetails && (
-                            <div className="text-center mt-3">
-                                <button className="btn btn-primary w-25" onClick={showDetailsHandler}>
-                                    Show Details
-                                </button>
-                            </div>
+                            <>
+                                <div className="text-center mt-3">
+                                    <button className="btn btn-primary w-25" onClick={showDetailsHandler}>
+                                        Show Details
+                                    </button>
+                                </div>
+                                <div className="text-center mt-3">
+                                    <button className="btn btn-primary w-25" onClick={() => setShowChart(true)}>
+                                        Show Chart
+                                    </button>
+                                </div>
+                            </>
                         )}
                     </>
                 )

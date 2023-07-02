@@ -22,24 +22,24 @@ describe('BalanceCalculator', () => {
 
     it("should update filteredMonths when changesList is not empty", () => {
         const changesList = [
-            { month: "January", equity: 4, debt: 10, gold: 2 },
-            { month: "February", equity: -10, debt: 40, gold: 0 },
-            { month: "March", equity: 12.5, debt: 12.5, gold: 12.5 },
+            { month: "JANUARY", equity: 4, debt: 10, gold: 2 },
+            { month: "FEBRUARY", equity: -10, debt: 40, gold: 0 },
+            { month: "MARCH", equity: 12.5, debt: 12.5, gold: 12.5 },
         ];
         render(<BalanceCalculator changesList={changesList} />);
 
-        expect(screen.getByText("January")).toBeInTheDocument();
-        expect(screen.getByText("February")).toBeInTheDocument();
-        expect(screen.getByText("March")).toBeInTheDocument();
+        expect(screen.getByText("JANUARY")).toBeInTheDocument();
+        expect(screen.getByText("FEBRUARY")).toBeInTheDocument();
+        expect(screen.getByText("MARCH")).toBeInTheDocument();
     });
 
     it("should not update filteredMonths when changesList is empty", () => {
         const changesList = [];
         render(<BalanceCalculator changesList={changesList} />);
 
-        expect(screen.queryByText("January")).not.toBeInTheDocument();
-        expect(screen.queryByText("February")).not.toBeInTheDocument();
-        expect(screen.queryByText("March")).not.toBeInTheDocument();
+        expect(screen.queryByText("JANURAY")).not.toBeInTheDocument();
+        expect(screen.queryByText("FEBRUARY")).not.toBeInTheDocument();
+        expect(screen.queryByText("MARCH")).not.toBeInTheDocument();
     });
 
     it('should calculate balance correctly when calling getBalance', () => {
@@ -54,9 +54,9 @@ describe('BalanceCalculator', () => {
             gold: 500,
         };
         const changesList = [
-            { month: 'January', equity: 4, debt: 10, gold: 2 },
-            { month: 'February', equity: -10, debt: 40, gold: 0 },
-            { month: 'March', equity: 12.50, debt: 12.50, gold: 12.50 },
+            { month: 'JANUARY', equity: 4, debt: 10, gold: 2 },
+            { month: 'FEBRUARY', equity: -10, debt: 40, gold: 0 },
+            { month: 'MARCH', equity: 12.50, debt: 12.50, gold: 12.50 },
         ];
         const setIsSubmitted = jest.fn();
 
@@ -89,12 +89,12 @@ describe('BalanceCalculator', () => {
             gold: 500,
         };
         const changesList = [
-            { month: 'January', equity: 4, debt: 10, gold: 2 },
-            { month: 'February', equity: -10, debt: 40, gold: 0 },
-            { month: 'March', equity: 12.50, debt: 12.50, gold: 12.50 },
-            { month: 'April', equity: 8, debt: -3, gold: 7 },
-            { month: 'May', equity: 13, debt: 21, gold: 10.50 },
-            { month: 'June', equity: 10, debt: 8, gold: -5 },
+            { month: 'JANUARY', equity: 4, debt: 10, gold: 2 },
+            { month: 'FEBRUARY', equity: -10, debt: 40, gold: 0 },
+            { month: 'MARCH', equity: 12.50, debt: 12.50, gold: 12.50 },
+            { month: 'APRIL', equity: 8, debt: -3, gold: 7 },
+            { month: 'MAY', equity: 13, debt: 21, gold: 10.50 },
+            { month: 'JUNE', equity: 10, debt: 8, gold: -5 },
         ];
         const setIsSubmitted = jest.fn();
 

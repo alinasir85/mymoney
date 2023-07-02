@@ -5,8 +5,8 @@ describe('ChangesList', () => {
 
     it('should render the component with label', () => {
         const changesList = [
-            { month: 'January', equity: 1000, debt: 2000, gold: 500 },
-            { month: 'February', equity: 1500, debt: 1800, gold: 600 },
+            { month: 'JANUARY', equity: 1000, debt: 2000, gold: 500 },
+            { month: 'FEBRUARY', equity: 1500, debt: 1800, gold: 600 },
         ];
         const label = 'Changes';
         render(<ChangesList changesList={changesList} label={label} />);
@@ -15,11 +15,11 @@ describe('ChangesList', () => {
         expect(screen.getByText('Equity: 1000')).toBeInTheDocument();
         expect(screen.getByText('Debt: 2000')).toBeInTheDocument();
         expect(screen.getByText('Gold: 500')).toBeInTheDocument();
-        expect(screen.getByText('Month: January')).toBeInTheDocument();
+        expect(screen.getByText('Month: JANUARY')).toBeInTheDocument();
         expect(screen.getByText('Equity: 1500')).toBeInTheDocument();
         expect(screen.getByText('Debt: 1800')).toBeInTheDocument();
         expect(screen.getByText('Gold: 600')).toBeInTheDocument();
-        expect(screen.getByText('Month: February')).toBeInTheDocument();
+        expect(screen.getByText('Month: FEBRUARY')).toBeInTheDocument();
     });
 
     it('should render the component without label', () => {

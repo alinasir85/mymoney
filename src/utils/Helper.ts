@@ -1,4 +1,4 @@
-export const MONTH_LIST = ['January','February','March','April','May','June','July','August','September','October','November','December']
+export const MONTH_LIST = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
 
 export const sortMonthsDesc = (data) => {
     return data.sort((a, b) => {

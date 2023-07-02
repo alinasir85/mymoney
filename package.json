@@ -10,8 +10,8 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d out"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "bootstrap": "^5.3.0",
@@ -22,7 +22,8 @@
     "next": "13.4.7",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "recharts": "^2.7.2"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.22.5",
