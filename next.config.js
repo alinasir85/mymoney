@@ -2,11 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   basePath: '/mymoney',
-  assetPrefix: '/mymoney/',
-  generateBuildId: async () => {
-    return 'nextjs-build';
-  },
-  generateEtags: false
+  assetPrefix: '/mymoney/'
 }
 
 module.exports = nextConfig
