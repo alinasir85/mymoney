@@ -10,6 +10,6 @@ Sample Video: https://github.com/alinasir85/mymoney/blob/master/MyMoney.mp4
 
 Live Site: https://alinasir85.github.io/mymoney/
 
-![](C:\Users\Ali Nasir\Pictures\Screenshots\Screenshot 2023-07-02 223439.png)
+<img height="500" src="public/intro1.png" width="700"/>
 
-![](C:\Users\Ali Nasir\Pictures\Screenshots\Screenshot 2023-07-02 223735.png)
+<img height="500" src="public/intro2.png" width="700"/>
